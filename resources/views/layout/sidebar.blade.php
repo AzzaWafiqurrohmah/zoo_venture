@@ -51,8 +51,8 @@
 
             <li class="sidebar-title">Menu</li>
 
-            <li class="sidebar-item @yield('user')">
-                <a href=""  class='sidebar-link'>
+            <li class="sidebar-item @yield('shed')">
+                <a href="{{ route('sheds.index') }}"  class='sidebar-link'>
                     <i class="bi bi-bookmarks-fill"></i>
                     <span>Area</span>
                 </a>
