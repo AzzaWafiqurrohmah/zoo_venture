@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/css/iconly.css">
 
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @stack('style')
 </head>
 <body>
@@ -27,6 +28,7 @@
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
+            
             </a>
         </header>
         @yield('content')

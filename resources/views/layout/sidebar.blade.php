@@ -65,8 +65,8 @@
                 </a>
             </li>
 
-            <li class="sidebar-item @yield('uploadEducation')">
-                <a href=""  class='sidebar-link'>
+            <li class="sidebar-item @yield('species')">
+                <a href="{{ route('species.index') }}"  class='sidebar-link'>
                     <i class="bi bi-bookmark-fill"></i>
                     <span>Spesies</span>
                 </a>
