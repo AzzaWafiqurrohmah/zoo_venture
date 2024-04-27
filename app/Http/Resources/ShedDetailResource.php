@@ -19,7 +19,7 @@ class ShedDetailResource extends JsonResource
             'name' => $this->name,
             'color' => $this->color,
             'total_specs' => $this->species?->count() ?? 0,
-            'specs' => $this->species,
+            'specs' => SpeciesResource::collection($this->species),
             'coordinates' => array_map(
                 fn ($coordinate) => explode(',', $coordinate),
                 $this->coordinates

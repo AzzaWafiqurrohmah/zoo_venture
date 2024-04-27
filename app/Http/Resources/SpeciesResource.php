@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class SpeciesResource extends JsonResource
 {
@@ -15,14 +16,14 @@ class SpeciesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' =>$this->id,
+            'id' => $this->id,
             'scientific_name' => $this->scientific_name,
             'name' => $this->name,
             'origin' => $this->origin,
-            'image' => $this->image,
+            'image' => Storage::url($this->image),
             'description' => $this->description,
             'article' => $this->article,
-            'shed_id' =>$this->shed_id
+            'shed_id' => $this->shed_id
         ];
     }
 }

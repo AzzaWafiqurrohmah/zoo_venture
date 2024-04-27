@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ShedController;
-use App\Models\Shed;
+use App\Http\Controllers\SpeciesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +25,10 @@ Route::prefix('sheds')
         Route::get('/', 'json');
         Route::get('/{shed}', 'apiById');
         Route::post('/details', 'detailsJson');
+    });
+
+Route::prefix('species')
+    ->controller(SpeciesController::class)->group(function () {
+        Route::get('/json', 'json');
+        Route::get('/{species}', 'apiById');
     });
