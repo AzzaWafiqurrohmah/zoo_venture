@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\ShedController;
 use App\Http\Controllers\SpeciesController;
 
@@ -26,6 +27,12 @@ Route::prefix('code')
     ->name('code.')
     ->controller(CodeController::class)
     ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('store', 'store')->name('store');
+        Route::get('datatables', 'dataTables')->name('datatables');
+        Route::get('generate', 'generate')->name('generate');
+        Route::get('{code}', 'show')->name('show');
+        Route::delete('{code}', 'destroy')->name('destroy');
         Route::get('enter', 'enter')->name('enter');
         Route::get('invalid', 'invalid')->name('invalid');
     });
@@ -75,3 +82,6 @@ Route::middleware('auth')->group(function () {
             Route::delete('{species}', 'destroy')->name('destroy');
         });
 });
+
+
+    // Route::get('/', [QrCodeController::class, 'show']);

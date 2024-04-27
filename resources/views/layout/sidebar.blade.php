@@ -39,15 +39,6 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-            <li class="sidebar-title">Home</li>
-
-            <li class="sidebar-item @yield('dashboard')">
-                <a href="/dashboard"  class="sidebar-link">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
 
             <li class="sidebar-title">Menu</li>
 
@@ -65,12 +56,10 @@
                 </a>
             </li>
 
-            <li class="sidebar-title">Account</li>
-
-            <li class="sidebar-item ">
-                <a href=""  class='sidebar-link'>
-                    <i class="bi bi-person-fill"></i>
-                    <span>Profile</span>
+            <li class="sidebar-item @yield('code')">
+                <a href="{{ route('code.index') }}"  class='sidebar-link'>
+                    <i class="bi bi-qr-code"></i>
+                    <span>Kode Tiket</span>
                 </a>
             </li>
 
