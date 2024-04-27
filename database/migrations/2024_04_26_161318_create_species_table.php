@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('species', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('shed_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('scientific_name');
             $table->string('name');
             $table->text('image')->nullable();
             $table->string('origin');
             $table->string('description');
             $table->string('article');
-            $table->string('color');
         });
     }
 

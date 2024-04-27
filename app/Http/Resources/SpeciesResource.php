@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShedResource extends JsonResource
+class SpeciesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,14 @@ class ShedResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'id' =>$this->id,
+            'scientific_name' => $this->scientific_name,
             'name' => $this->name,
-            'coordinates' => $this->coordinates
+            'origin' => $this->origin,
+            'image' => $this->image,
+            'description' => $this->description,
+            'article' => $this->article,
+            'location_id' =>$this->location_id
         ];
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Exceptions\Api\FailedValidation;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShedRequest extends FormRequest
+class SpeciesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +21,18 @@ class ShedRequest extends FormRequest
      */
     public function rules(): array
     {
+
         $rules =  [
-            'name' => 'required',
-            'coordinates' => 'required|array|min: 1',
-            'color' => 'required'
+            'scientific_name' => 'required|string',
+            'name' => 'required|string',
+            'origin' => 'required|string',
+            'description' => 'required|string',
+            'article' => 'required|string',
+            'shed_id' => 'required|exists:sheds,id'
         ];
 
-        // dd($this->all());
-
-        if($this->getMethod() == 'POST')
-            $rules['name'] = 'required|unique:sheds,name';
+        if ($this->isMethod('POST') || $this->image)
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
 
         return $rules;
     }

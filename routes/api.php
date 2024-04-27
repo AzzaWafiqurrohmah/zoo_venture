@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ShedController;
+use App\Models\Shed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(ShedController::class)->group(function(){
+    Route::get('/all', 'json');
+    Route::post('/byId', 'apiById');
 });

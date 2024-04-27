@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ShedController;
+use App\Http\Controllers\SpeciesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,16 +47,31 @@ Route::middleware('auth')->group(function () {
         return view('pages.dashboard', ['title' => 'dashboard']);
     });
 
-    //shed
+    //sheds
     Route::prefix('sheds')
-        ->name('sheds.')
-        ->controller(ShedController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('store', 'store')->name('store');
-            Route::match(['PUT', 'PATCH'], '{shed}/update', 'update')->name('update');
+    ->name('sheds.')
+    ->controller(ShedController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('/{shed}/edit', 'edit')->name('edit');
+        Route::match(['PUT', 'PATCH'], '{shed}/update', 'update')->name('update');
+        Route::get('datatables', 'datatables')->name('datatables');
+        Route::get('{shed}', 'show')->name('show');
+        Route::delete('{shed}', 'destroy')->name('destroy');
+    });
 
+    //species
+    Route::prefix('species')
+        ->name('species.')
+        ->controller(SpeciesController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('/{species}/edit', 'edit')->name('edit');
+            Route::match(['PUT', 'PATCH'], '{species}/update', 'update')->name('update');
             Route::get('datatables', 'datatables')->name('datatables');
-            Route::get('{shed}', 'show')->name('show');
-            Route::delete('{shed}', 'destroy')->name('destroy');
+            Route::get('{species}', 'show')->name('show');
+            Route::delete('{species}', 'destroy')->name('destroy');
         });
 });

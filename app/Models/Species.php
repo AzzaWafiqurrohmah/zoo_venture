@@ -13,11 +13,11 @@ class Species extends Model
 
     protected $fillable = [
         'location_id', 'scientific_name', 'name', 'image',
-        'origin', 'description', 'article'
+        'origin', 'description', 'article', 'shed_id'
     ];
 
-    public function location() :BelongsTo
+    public function shed() :BelongsTo
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Shed::class);
     }
 }
