@@ -100,4 +100,13 @@ class SpeciesController extends Controller
         );
     }
 
+    public function apiById(int $id)
+    {
+        $species = Species::find($id);
+        return $this->success(
+            SpeciesResource::make($species),
+            'Berhasil mengambil data'
+        );
+    }
+
 }
