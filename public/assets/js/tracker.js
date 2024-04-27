@@ -28,6 +28,16 @@ function createNearestArea(details) {
     let elements = '';
     let drds = '';
 
+    if(details.length < 1) {
+        $('#nearest-container').html(`
+            <div class="flex justify-center items-center gap-2 bg-gray-100 rounded-lg py-6">
+                <i class="ti ti-template-off text-4xl"></i>
+                <p class="text-base font-semibold">Tidak ada area terdekat</p>
+            </div>`);
+
+        return;
+    }
+
     if(compareArraysIgnoreOrder(details, nearests)) return;
 
     details.map((detail) => {
@@ -67,7 +77,7 @@ function createNearestArea(details) {
 }
 
 function renderNearestArea(distances) {
-    const treshold = 0.01;
+    const treshold = 0.001;
     const closests = distances.filter((d) => d.distance < treshold || d.isInside == true);
 
     createNearestArea(closests);
