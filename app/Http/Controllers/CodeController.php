@@ -7,6 +7,7 @@ use App\Models\Code;
 use App\Traits\ApiResponser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -109,7 +110,7 @@ class CodeController extends Controller
         $code = Code::where('code', $request->code)->first();
 
         if ($code) {
-            session()->put('code', $code->code);
+            Auth::guard('code')->loginUsingId($code->id);
             return to_route('maps.show');
         }
 

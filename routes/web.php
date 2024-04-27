@@ -42,6 +42,7 @@ Route::prefix('code')
 Route::prefix('maps')
     ->name('maps.')
     ->controller(MapController::class)
+    ->middleware('code')
     ->group(function () {
         Route::get('/', 'show')->name('show');
     });
