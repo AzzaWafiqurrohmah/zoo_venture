@@ -63,7 +63,7 @@ class ShedController extends Controller
     public function update(ShedRequest $request, Shed $shed)
     {
         $shed->update($request->validated());
-        return to_route('shed.index')->with('alert_s', 'Berhasil mengubah Data Area');
+        return to_route('sheds.index')->with('alert_s', 'Berhasil mengubah Data Area');
     }
 
     /**

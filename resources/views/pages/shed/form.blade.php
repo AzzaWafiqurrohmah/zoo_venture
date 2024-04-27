@@ -38,10 +38,10 @@
                             </div>
                         @enderror
                     </div>
-
                     <div style="text-align: end">
                         <button type="submit" class="btn btn-primary @error('color') is-invalid @enderror"  style="font-size: 12px;" id="btn-submit" name="btn-submit" >Simpan</button>
                     </div>
+                
         </div>
     </div>
 </div>
@@ -51,6 +51,11 @@
         var polygons = [];
 
         var map = L.map('map').setView([-7.296194429972056, 112.73681616791822], 17);
+        @if ($shed) {
+            @foreach ($shed->coordinates as $item)
+                polygons.push([{{ $item }}]);
+            @endforeach
+        } @endif
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -76,6 +81,7 @@
         shedForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            polygons.push(polygons[0]);
             polygons.map((polygon) => {
                 const mapInput = document.createElement('input');
 
