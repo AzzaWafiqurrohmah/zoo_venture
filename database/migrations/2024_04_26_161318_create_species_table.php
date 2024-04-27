@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->string('origin');
             $table->string('description');
+            $table->string('article');
             $table->string('color');
         });
     }
