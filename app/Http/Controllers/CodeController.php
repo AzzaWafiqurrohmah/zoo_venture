@@ -15,9 +15,11 @@ class CodeController extends Controller
 
     use ApiResponser;
 
-    public function enter()
+    public function enter(Request $request)
     {
-        return view('pages.code.enter');
+        return view('pages.code.enter', [
+            'code' => $request->code ?? '',
+        ]);
     }
 
     public function invalid()
@@ -27,17 +29,6 @@ class CodeController extends Controller
 
     public function index()
     {
-        // $code = Code::find('1');
-
-        // $random = Str::random('5');
-        // $qrcode = QrCode::size(300)
-        // ->backgroundColor(255, 255, 255)
-        // ->color(0, 0, 0)
-        // ->margin(1)
-        // ->generate(
-        //     'https://localhost.com?code=' . $random,
-        // );
-
         return view('pages.code.index', [
             'title' => 'Kode Tiket',
             'url' => 'https://local?code='
@@ -62,12 +53,12 @@ class CodeController extends Controller
     public function show(Code $code)
     {
         $qrCode = QrCode::size(300)
-        ->backgroundColor(255, 255, 255)
-        ->color(0, 0, 0)
-        ->margin(1)
-        ->generate(
-            'https://localhost.com?code=ABCDE',
-        );
+            ->backgroundColor(255, 255, 255)
+            ->color(0, 0, 0)
+            ->margin(1)
+            ->generate(
+                'https://localhost.com?code=ABCDE',
+            );
         return $this->success(
             ['qrCode' => $code->code],
             'Berhasil mengambil data'
@@ -82,11 +73,11 @@ class CodeController extends Controller
         );
     }
 
-    public function dataTables() 
+    public function dataTables()
     {
         return datatables(Code::query())
             ->addIndexColumn()
-            ->addColumn('action', fn($code) => view('pages.code.action', compact('code')))
+            ->addColumn('action', fn ($code) => view('pages.code.action', compact('code')))
             ->toJson();
     }
 
@@ -102,10 +93,26 @@ class CodeController extends Controller
     public function generate(Request $request)
     {
         header('Content-Type', 'image/png');
-        
+
         $url = route('code.enter');
 
         return QrCode::size(300)
             ->generate("{$url}?code={$request->code}");
+    }
+
+    public function check(Request $request)
+    {
+        $request->validate([
+            'code' => 'required',
+        ]);
+
+        $code = Code::where('code', $request->code)->first();
+
+        if ($code) {
+            session()->put('code', $code->code);
+            return to_route('maps.show');
+        }
+
+        return to_route('code.invalid');
     }
 }

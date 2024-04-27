@@ -31,14 +31,16 @@ Route::prefix('code')
         Route::post('store', 'store')->name('store');
         Route::get('datatables', 'dataTables')->name('datatables');
         Route::get('generate', 'generate')->name('generate');
-        Route::get('{code}', 'show')->name('show');
-        Route::delete('{code}', 'destroy')->name('destroy');
         Route::get('enter', 'enter')->name('enter');
         Route::get('invalid', 'invalid')->name('invalid');
+        Route::post('check', 'check')->name('check');
+
+        Route::get('{code}', 'show')->name('show');
+        Route::delete('{code}', 'destroy')->name('destroy');
     });
 
 Route::prefix('maps')
-    ->name('maps')
+    ->name('maps.')
     ->controller(MapController::class)
     ->group(function () {
         Route::get('/', 'show')->name('show');

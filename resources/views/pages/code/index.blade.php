@@ -83,7 +83,7 @@
         });
 
         const codeModal = new bootstrap.Modal('#code-modal');
-        
+
         let ID = 0;
 
         $('#codes-table').on('click', '.btn-show', function(e) {
@@ -113,9 +113,8 @@
                         text: res.meta.message,
                         timer: 1500,
                     });
-            });
 
-            codeModal.show();
+                    codeModal.show();
                 },
                 error(err) {
                     Swal.fire({
@@ -123,10 +122,9 @@
                         text: 'Terdapat masalah saat melakukan aksi',
                         timer: 1500,
                     });
-                },
+                }
             });
         });
-
 
         function deleteItem(id) {
             $.ajax({
