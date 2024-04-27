@@ -65,12 +65,10 @@
                 </a>
             </li>
 
-            <li class="sidebar-title">Account</li>
-
-            <li class="sidebar-item ">
-                <a href=""  class='sidebar-link'>
-                    <i class="bi bi-person-fill"></i>
-                    <span>Profile</span>
+            <li class="sidebar-item @yield('code')">
+                <a href="{{ route('code.index') }}"  class='sidebar-link'>
+                    <i class="bi bi-qr-code"></i>
+                    <span>Kode Tiket</span>
                 </a>
             </li>
 
