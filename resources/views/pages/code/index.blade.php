@@ -70,6 +70,16 @@
 
 @push('script')
     <script>
+        function showCode(code) {
+            $.ajax({
+                url: `/code/generate?code=${code}`,
+                success(res) {
+                    $('#qrCodeText').text(code);
+                    $('#qrCodeImage').html(res);
+                }
+            });
+        }
+
         const codeTable = $('#codes-table').DataTable({
             serverSide: true,
             rendering: true,
@@ -87,16 +97,7 @@
         let ID = 0;
 
         $('#codes-table').on('click', '.btn-show', function(e) {
-            const code = this.dataset.code;
-
-            $.ajax({
-                url: `/code/generate?code=${code}`,
-                success(res) {
-                    $('#qrCodeText').text(code);
-                    $('#qrCodeImage').html(res);
-                }
-            });
-
+            showCode(this.dataset.code);
             codeModal.show();
         });
 
@@ -114,6 +115,7 @@
                         timer: 1500,
                     });
 
+                    showCode(res.data.code);
                     codeModal.show();
                 },
                 error(err) {
