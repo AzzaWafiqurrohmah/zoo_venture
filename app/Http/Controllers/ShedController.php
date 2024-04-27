@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShedRequest;
+use App\Http\Resources\ShedDetailResource;
 use App\Http\Resources\ShedResource;
 use App\Models\Shed;
 use App\Traits\ApiResponser;
@@ -87,7 +88,7 @@ class ShedController extends Controller
     {
         $sheds = Shed::all();
         return $this->success(
-            ShedResource::collection($sheds),
+            ShedDetailResource::collection($sheds),
             'Berhasil mengambil seluruh Data'
         );
     }
@@ -97,6 +98,16 @@ class ShedController extends Controller
         return $this->success(
             ShedResource::make($shed),
             'Berhasil mengambil data'
+        );
+    }
+
+    public function detailsJson(Request $request)
+    {
+        $sheds = Shed::whereIn('id', $request->ids)->get();
+
+        return $this->success(
+            ShedDetailResource::collection($sheds),
+            'Berhasil mengambil seluruh Data'
         );
     }
 }

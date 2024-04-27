@@ -24,4 +24,5 @@ Route::prefix('sheds')
     ->controller(ShedController::class)->group(function () {
         Route::get('/', 'json');
         Route::get('/{shed}', 'apiById');
+        Route::post('/details', 'detailsJson');
     });
