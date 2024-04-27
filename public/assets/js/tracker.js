@@ -48,7 +48,7 @@ function createNearestArea(details) {
 
         detail.specs.map((spec) => {
             drds += `<div class="flex gap-3 items-center hover:bg-gray-100 px-4 py-2 rounded-lg cursor-pointer species-item" data-id="${spec.id}">
-                    <div class="w-11 h-11 rounded-full }bg-cover bg-center" style="background-image: url(${spec.image})"></div>
+                    <div class="w-11 h-11 rounded-full bg-cover bg-center" style="background-image: url(${spec.image})"></div>
                     <div>
                         <h4 class="text-[1rem] font-semibold mb-1 text-gray-800">${spec.name}</h4>
                     </div>
@@ -58,7 +58,7 @@ function createNearestArea(details) {
         elements += `
         <div class="rounded-lg hover:bg-gray-100">
             <div class="flex gap-3 items-center px-4 py-3 cursor-pointer dropdown-btn">
-                <div class="w-12 h-12 rounded-full" style="background-color: ${detail.color}"></div>
+                <div class="w-12 h-12 rounded-full bg-cover bg-center" style="background-color: ${detail.color}"></div>
                 <div>
                     <h4 class="text-base font-semibold mb-1 text-gray-800">${detail.name}</h4>
                     <span class="bg-slate-200 px-3 py-0.5 rounded-full text-xs font-semibold">${detail.total_specs} spesies</span>
@@ -77,7 +77,7 @@ function createNearestArea(details) {
 }
 
 function renderNearestArea(distances) {
-    const treshold = 0.001;
+    const treshold = 0.01
     const closests = distances.filter((d) => d.distance < treshold || d.isInside == true);
 
     createNearestArea(closests);

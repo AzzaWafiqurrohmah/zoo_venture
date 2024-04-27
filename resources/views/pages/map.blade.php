@@ -11,6 +11,10 @@
             Area Terdekat
         </h5>
         <div class="flex flex-col gap-2 mt-4" id="nearest-container">
+            <div class="flex justify-center items-center gap-2 bg-gray-100 rounded-lg py-6">
+                <i class="ti ti-template-off text-4xl"></i>
+                <p class="text-base font-semibold">Tidak ada area terdekat</p>
+            </div>
             {{-- <div class="rounded-lg hover:bg-gray-100">
                 <div class="flex gap-3 items-center px-4 py-3 cursor-pointer dropdown-btn">
                     <div class="w-12 h-12 rounded-full bg-[#80BCBD]"></div>
