@@ -19,7 +19,7 @@ use App\Http\Controllers\SpeciesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::prefix('code')
