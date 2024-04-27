@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ShedController;
 
 /*
@@ -19,14 +20,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('guest')->controller(AuthController::class)->group(function(){
+Route::prefix('code')
+    ->name('code.')
+    ->controller(CodeController::class)
+    ->group(function () {
+        Route::get('enter', 'enter')->name('enter');
+        Route::get('invalid', 'invalid')->name('invalid');
+    });
+
+
+Route::middleware('guest')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'index')->name('login');
     Route::post('/store', 'store');
 });
 
-Route::middleware('auth')->group(function(){
-    Route::get('/dashboard', function(){
-        return view('pages.dashboard', [ 'title' => 'dashboard']);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard', ['title' => 'dashboard']);
     });
 
     //shed
