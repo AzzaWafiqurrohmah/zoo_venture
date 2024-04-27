@@ -12,12 +12,16 @@ class Shed extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'name', 'coordinates', 'color'
     ];
 
-    public function location() :HasMany
+    protected $casts = [
+        'coordinates' => 'array'
+    ];
+
+    public function species() :HasMany
     {
-        return $this->hasMany(Location::class);
+        return $this->hasMany(Species::class);
     }
 
 }
