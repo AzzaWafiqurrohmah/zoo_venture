@@ -24,7 +24,7 @@ class ShedController extends Controller
 
     public function create()
     {
-        return view('pages.shed.create', [
+        return view('pages.shed.create',[
             'title' => 'shed'
         ]);
     }
@@ -78,9 +78,9 @@ class ShedController extends Controller
     public function dataTables()
     {
         return DataTables(Shed::query())
-            ->addIndexColumn()
-            ->addColumn('action', fn ($shed) => view('pages.shed.action', compact('shed')))
-            ->toJson();
+        ->addIndexColumn()
+        ->addColumn('action', fn($shed) => view('pages.shed.action', compact('shed')))
+        ->toJson();
     }
 
     public function json()
@@ -92,11 +92,14 @@ class ShedController extends Controller
         );
     }
 
-    public function apiById(Shed $shed)
+    public function apiById(int $id)
     {
+        $shed = Shed::find($id);
         return $this->success(
             ShedResource::make($shed),
             'Berhasil mengambil data'
         );
     }
+    
+
 }

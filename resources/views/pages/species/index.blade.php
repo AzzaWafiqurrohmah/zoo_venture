@@ -57,7 +57,7 @@
 
         function deleteItem(id) {
             $.ajax({
-                url: `/sheds/${id}`,
+                url: `/species/${id}`,
                 method: 'DELETE',
                 success(res) {
                     shedTable.ajax.reload();
