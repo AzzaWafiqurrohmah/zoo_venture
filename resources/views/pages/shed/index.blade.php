@@ -144,11 +144,11 @@
 
         $('#sheds-table').on('click', '.btn-edit', function(e) {
             editID = this.dataset.id;
-            shedModal.show();
+            window.location.href = "{{ route('sheds.edit', 'VALUE') }}".replace('VALUE', editID);
         });
 
         $('#newShed').on('click', function (e) {
-            shedModal.show();
+            window.location.href = "{{ route('sheds.create') }}";
         });
 
 

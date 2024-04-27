@@ -58,13 +58,6 @@
                 </a>
             </li>
 
-            <li class="sidebar-item @yield('education')">
-                <a href=""  class='sidebar-link'>
-                    <i class="bi bi-geo-alt-fill"></i>
-                    <span>lokasi</span>
-                </a>
-            </li>
-
             <li class="sidebar-item @yield('species')">
                 <a href="{{ route('species.index') }}"  class='sidebar-link'>
                     <i class="bi bi-bookmark-fill"></i>

@@ -23,18 +23,17 @@ class ShedRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'name' => 'required'
+        $rules =  [
+            'name' => 'required',
+            'coordinates' => 'required|array|min: 1',
+            'color' => 'required'
         ];
+
+        // dd($this->all());
 
         if($this->getMethod() == 'POST')
             $rules['name'] = 'required|unique:sheds,name';
 
         return $rules;
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        return throw new FailedValidation($validator->errors());
     }
 }

@@ -22,16 +22,20 @@ class ShedController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('pages.shed.create',[
+            'title' => 'shed'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(ShedRequest $request)
     {
         $shed = Shed::create($request->validated());
-        return $this->success(
-            ShedResource::make($shed),
-            'Berhasil menambahkan Data'
-        );
+        return to_route('sheds.index')->with('alert_s', 'Berhasil menambahkan Data Area');
     }
 
     /**
@@ -45,16 +49,21 @@ class ShedController extends Controller
         );
     }
 
+    public function edit(Shed $shed)
+    {
+        return view('pages.shed.edit', [
+            'title' => 'Shed',
+            'shed' => $shed
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(ShedRequest $request, Shed $shed)
     {
         $shed->update($request->validated());
-        return $this->success(
-            ShedResource::make($shed),
-            'Berhasil mengubah Data'
-        );
+        return to_route('shed.index')->with('alert_s', 'Berhasil mengubah Data Area');
     }
 
     /**
@@ -63,9 +72,7 @@ class ShedController extends Controller
     public function destroy(Shed $shed)
     {
         $shed->delete();
-        return $this->success(
-            message:'Berhasil menghapus data'
-        );
+        return back()->with('alert_s', 'Berhasil menghapus data');
     }
 
     public function dataTables()
