@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Shed extends Model
 {
@@ -13,4 +14,10 @@ class Shed extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function location() :HasMany
+    {
+        return $this->hasMany(Location::class);
+    }
+
 }
