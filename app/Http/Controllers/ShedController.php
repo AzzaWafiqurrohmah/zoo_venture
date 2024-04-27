@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShedRequest;
+use App\Http\Resources\ShedDetailResource;
 use App\Http\Resources\ShedResource;
 use App\Models\Shed;
 use App\Traits\ApiResponser;
@@ -24,7 +25,7 @@ class ShedController extends Controller
 
     public function create()
     {
-        return view('pages.shed.create',[
+        return view('pages.shed.create', [
             'title' => 'shed'
         ]);
     }
@@ -78,16 +79,16 @@ class ShedController extends Controller
     public function dataTables()
     {
         return DataTables(Shed::query())
-        ->addIndexColumn()
-        ->addColumn('action', fn($shed) => view('pages.shed.action', compact('shed')))
-        ->toJson();
+            ->addIndexColumn()
+            ->addColumn('action', fn ($shed) => view('pages.shed.action', compact('shed')))
+            ->toJson();
     }
 
     public function json()
     {
         $sheds = Shed::all();
         return $this->success(
-            ShedResource::collection($sheds),
+            ShedDetailResource::collection($sheds),
             'Berhasil mengambil seluruh Data'
         );
     }
@@ -100,6 +101,14 @@ class ShedController extends Controller
             'Berhasil mengambil data'
         );
     }
-    
 
+    public function detailsJson(Request $request)
+    {
+        $sheds = Shed::whereIn('id', $request->ids)->get();
+
+        return $this->success(
+            ShedDetailResource::collection($sheds),
+            'Berhasil mengambil seluruh Data'
+        );
+    }
 }

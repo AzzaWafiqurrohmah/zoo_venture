@@ -56,17 +56,17 @@ Route::middleware('auth')->group(function () {
 
     //sheds
     Route::prefix('sheds')
-    ->name('sheds.')
-    ->controller(ShedController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
-        Route::get('/{shed}/edit', 'edit')->name('edit');
-        Route::match(['PUT', 'PATCH'], '{shed}/update', 'update')->name('update');
-        Route::get('datatables', 'datatables')->name('datatables');
-        Route::get('{shed}', 'show')->name('show');
-        Route::delete('{shed}', 'destroy')->name('destroy');
-    });
+        ->name('sheds.')
+        ->controller(ShedController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('/{shed}/edit', 'edit')->name('edit');
+            Route::match(['PUT', 'PATCH'], '{shed}/update', 'update')->name('update');
+            Route::get('datatables', 'datatables')->name('datatables');
+            Route::get('{shed}', 'show')->name('show');
+            Route::delete('{shed}', 'destroy')->name('destroy');
+        });
 
     //species
     Route::prefix('species')
