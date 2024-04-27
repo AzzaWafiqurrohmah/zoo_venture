@@ -12,6 +12,6 @@ class Species extends Model
 
     protected $fillable = [
         'location_id', 'scientific_name', 'name', 'image',
-        'origin', 'description'
+        'origin', 'description', 'article'
     ];
 }
