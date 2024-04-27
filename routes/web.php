@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ShedController;
 
 /*
@@ -28,6 +29,12 @@ Route::prefix('code')
         Route::get('invalid', 'invalid')->name('invalid');
     });
 
+Route::prefix('maps')
+    ->name('maps')
+    ->controller(MapController::class)
+    ->group(function () {
+        Route::get('/', 'show')->name('show');
+    });
 
 Route::middleware('guest')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'index')->name('login');

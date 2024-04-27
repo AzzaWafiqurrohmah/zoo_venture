@@ -18,6 +18,7 @@
 <body class="font-jakarta-sans">
     @yield('content')
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     @vite('resources/js/app.js')
