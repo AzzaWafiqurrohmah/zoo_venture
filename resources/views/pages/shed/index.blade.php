@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="pagetitle">
-                <h1>Daftar Area</h1>
+                <h3>Daftar Area</h3>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
@@ -50,55 +50,6 @@
             ],
         });
 
-
-        const shedModal = new bootstrap.Modal('#shed-modal');
-        let editID = 0;
-
-        function fillForm() {
-            $.ajax({
-                url: `/sheds/${editID}`,
-                success: (res) => fillFormdata(res.data),
-            });
-        }
-
-        function saveItem() {
-            const url = editID != 0 ?
-                `/sheds/${editID}/update` :
-                `/sheds/store`;
-
-            const method = editID != 0 ? 'PUT' : 'POST';
-            console.log(method);
-
-            $.ajax({
-                url,
-                method,
-                data: $('#shed-form').serialize(),
-                success(res) {
-                    shedTable.ajax.reload();
-                    shedModal.hide();
-
-
-                    Swal.fire({
-                        icon: 'success',
-                        text: res.meta.message,
-                        timer: 1500,
-                    });
-                },
-                error(err) {
-                    if(err.status == 422) {
-                        displayFormErrors(err.responseJSON.data);
-                        return;
-                    }
-
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'Terdapat masalah saat melakukan aksi',
-                        timer: 1500,
-                    });
-                },
-            });
-        }
-
         function deleteItem(id) {
             $.ajax({
                 url: `/sheds/${id}`,
@@ -122,25 +73,7 @@
             });
         }
 
-        $('#shed-modal').on('show.bs.modal', function (event) {
-            $('#shed-modal-title').text(editID ? 'Edit Data Area' : 'Tambah Data Area');
-            if(editID != 0)
-                fillForm();
-        });
-
-        $('#shed-modal').on('hidden.bs.modal', function (event) {
-            editID = 0;
-
-            removeFormErrors();
-            $('#shed-form').trigger('reset');
-        });
-
-        $('#shed-form').submit(function(e) {
-            e.preventDefault();
-
-            removeFormErrors();
-            saveItem();
-        });
+    
 
         $('#sheds-table').on('click', '.btn-edit', function(e) {
             editID = this.dataset.id;
@@ -153,6 +86,7 @@
 
 
         $('#sheds-table').on('click', '.btn-delete', function(e) {
+            console.log(this.dataset.id);
             Swal.fire({
                 icon: 'question',
                 text: 'Apakah anda yakin?',

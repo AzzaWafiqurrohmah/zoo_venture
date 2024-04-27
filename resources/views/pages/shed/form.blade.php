@@ -63,7 +63,6 @@
         }).addTo(map);
 
         var polygon = L.polygon(polygons).addTo(map);
-        polygon.bindPopup("SMK Mastrip");
 
         map.on('click', (e) => {
             const coordinat = e.latlng;
@@ -94,18 +93,6 @@
 
             shedForm.submit();
         });
-
-        function generateRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        var colorInput = document.getElementById('color');
-        colorInput.value = generateRandomColor();
 
     </script>
 @endpush

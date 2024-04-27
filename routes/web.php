@@ -75,3 +75,9 @@ Route::middleware('auth')->group(function () {
             Route::delete('{species}', 'destroy')->name('destroy');
         });
 });
+
+Route::prefix('species')
+    ->controller(SpeciesController::class)->group(function () {
+        Route::get('/', 'json');
+        Route::get('/{species}', 'apiById');
+    });

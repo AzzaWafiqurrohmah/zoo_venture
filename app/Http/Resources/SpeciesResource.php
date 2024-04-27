@@ -22,7 +22,7 @@ class SpeciesResource extends JsonResource
             'image' => $this->image,
             'description' => $this->description,
             'article' => $this->article,
-            'location_id' =>$this->location_id
+            'shed_id' =>$this->shed_id
         ];
     }
 }

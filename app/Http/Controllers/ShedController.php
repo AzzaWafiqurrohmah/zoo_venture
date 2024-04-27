@@ -93,8 +93,9 @@ class ShedController extends Controller
         );
     }
 
-    public function apiById(Shed $shed)
+    public function apiById(int $id)
     {
+        $shed = Shed::find($id);
         return $this->success(
             ShedResource::make($shed),
             'Berhasil mengambil data'
