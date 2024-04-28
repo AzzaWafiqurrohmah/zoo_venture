@@ -28,7 +28,7 @@
                 <h3 class="text-lg md:text-xl font-medium mt-9 md:mt-11 curve-main">Kami di sini membantu anda untuk menemukan dan mempelajari setiap satwa di kebun binatang Surabaya.</h3>
 
                 <div class="flex mt-10 gap-4">
-                    <a href="" class="px-4 py-2 bg-main-color rounded-full text-white font-medium">Mulai Sekarang</a>
+                    <a href="{{ route('code.enter') }}" class="px-4 py-2 bg-main-color rounded-full text-white font-medium">Mulai Sekarang</a>
                     <a href="" class="px-4 py-2 font-medium"><i class="ti ti-player-play mr-1"></i> Lihat Video</a>
                 </div>
             </div>
